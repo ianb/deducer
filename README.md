@@ -1,4 +1,4 @@
 deducer
 =======
 
-An logic game, in HTML/Javascript
+A logic game, in HTML/Javascript

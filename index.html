@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deducer</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+  </head>
+  <body>
+
+<div class="contents">
+
+  <div id="table-container">
+  </div>
+
+  <div id="rules">
+    <div id="controls">
+      <button id="size-button">Change size</button>
+      <button id="make-rule">Make a rule</button>
+      <button id="make-solving-rules">Solving rules</button>
+      <button id="hint-button">Hint?</button>
+      <button id="auto-button">Auto-solve</button>
+      <div id="size-field" style="display: none">
+        <label for="size">Size:</label> <input type="text" id="size">
+      </div>
+      <div id="solve-field" style="display: none">
+      </div>
+    </div>
+    <div style="height: 6em;">
+      <div id="hint-container" style="display: none; position: relative;">
+        <div id="hint-container-close">&times;</div>
+        <div id="hint"></div>
+      </div>
+    </div>
+    <div id="horizontal-rule-list"></div>
+    <div id="vertical-rule-list"></div>
+  </div>
+
+  <div id="answer-container">
+    <button id="show-answer">Show Answer</button>
+    <div id="answer" style="display: none">
+    </div>
+  </div>
+
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+    <script src="code.js"></script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+body {
+    font-family: sans-serif;
+}
+
+
+/* Tile colors */
+
+.tile-row-0 {
+    background-color: #000;
+    color: #0f0;
+}
+
+.no .tile-row-0 {
+    background: url("strip.png") #000 no-repeat;
+}
+
+.tile-row-1 {
+    background-color: #ddf;
+}
+
+.no .tile-row-1 {
+    background: url("strip.png") #ddf no-repeat;
+}
+
+.tile-row-2 {
+    background-color: #009;
+    color: #ff9;
+}
+
+.no .tile-row-2 {
+    background: url("strip.png") #009 no-repeat;
+}
+
+.tile-row-3 {
+    background-color: #ffd;
+}
+
+.no .tile-row-2 {
+    background: url("strip.png") #ffd no-repeat;
+}
+
+.tile-row-4 {
+    background-color: #050;
+    color: #afa;
+}
+
+.no .tile-row-2 {
+    background: url("strip.png") #050 no-repeat;
+}
+
+.tile-row-5 {
+}
+
+.no .tile-row-2 {
+    background: url("strip.png") #fff no-repeat;
+}
+
+
+/* Rules/etc */
+
+table.rule {
+    background-color: #000;
+    border: 2px solid #888;
+    margin: 1px;
+}
+
+.rule.highlight {
+    border: 2px solid #d23;
+}
+
+#horizontal-rule-list, #vertical-rule-list {
+    clear: both;
+}
+
+#horizontal-rule-list table.rule, #vertical-rule-list table.rule {
+    float: right;
+}
+
+table.rule td {
+    border: 1px solid #999;
+    width: 1em;
+    text-align: center;
+    background-color: #fff;
+}
+
+table.rule td.no .tile {
+    /* FIXME: should be clearer */
+    border: 1px solid #d23;
+}
+
+table.puzzle, table.ops {
+    font-size: 130%;
+}
+
+table.chooser td {
+    width: 1em;
+    border: 1px solid #999;
+    text-align: center;
+    cursor: pointer;
+}
+
+table.chooser td:hover {
+    background-color: #aaf;
+    border: 1px solid #000;
+}
+
+table.chooser td.nope .tile {
+    color: #eee;
+    background-color: #fff;
+}
+
+table.chooser td.nope {
+    border: 1px solid #ddd;
+}
+
+table.chooser td.chosen .tile {
+    /* FIXME: this isn't very distinct */
+    color: #00f;
+    font-weight: bold;
+}
+
+table.chooser td.chosen {
+    border: 1px solid #00f;
+}
+
+table.chooser td.highlight {
+    font-weight: bold;
+    border: 3px dotted #d23;
+    background-color: #f99;
+}
+
+.puzzle td {
+    border: 1px solid #999;
+    text-align: center;
+    width: 1em;
+}
+
+#rules {
+    position: absolute;
+    right: 1em;
+    top: 0;
+    border: 1px solid #999;
+    padding: 1em;
+    max-width: 25em;
+}
+
+table.puzzle, table.ops, .rule {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#rule-list {
+    min-height: 5em;
+}
+
+#controls {
+    text-align: right;
+    clear: both;
+}
+
+#hint-container-close {
+    position: absolute;
+    right: 6px;
+    top: 2px;
+    cursor: pointer;
+}
+
+#hint-container {
+    background-color: #ddd;
+    border-radius: 0.7em;
+    padding: 0.7em;
+    border: 1px solid #ddd;
+}
+
+#hint-container .tile {
+    font-weight: bold;
+    font-size: 110%;
+    text-decoration: underline;
+}
+
+.rule td, .chooser-cell td {
+    padding: 0;
+}
+
+.rule .tile, .chooser-cell .tile, .puzzle .tile {
+    display: block;
+}
