@@ -105,7 +105,7 @@ table.chooser td:hover {
 }
 
 table.chooser td.nope .tile {
-    color: #eee;
+    color: #999;
     background-color: #fff;
 }
 
@@ -115,8 +115,17 @@ table.chooser td.nope {
 
 table.chooser td.chosen .tile {
     /* FIXME: this isn't very distinct */
-    color: #00f;
-    font-weight: bold;
+    min-width: 3em;
+    padding: 0.5em 0 0.5em 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    vertical-align: middle;
+}
+
+table.chooser {
+    width: 100%;
+    height: 100%;
 }
 
 table.chooser td.chosen {
@@ -162,11 +171,16 @@ table.puzzle, table.ops, .rule {
     clear: both;
 }
 
-#hint-container-close {
+.close {
     position: absolute;
     right: 6px;
     top: 2px;
     cursor: pointer;
+    z-index: 1000;
+    font-weight: bold;
+    font-size: 110%;
+    width: 1.1em;
+    height: 1.1em;
 }
 
 #hint-container {
@@ -188,4 +202,19 @@ table.puzzle, table.ops, .rule {
 
 .rule .tile, .chooser-cell .tile, .puzzle .tile {
     display: block;
+}
+
+#help {
+    position: absolute;
+    border: 2px solid #000;
+    border-radius: 1em;
+    padding: 1em;
+    height: 75%;
+    overflow-y: scroll;
+    width: 80%;
+    left: 50%;
+    top: 50%;
+    margin-top: -40%;
+    margin-left: -40%;
+    background-color: #fff;
 }

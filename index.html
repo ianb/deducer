@@ -13,20 +13,22 @@
 
   <div id="rules">
     <div id="controls">
-      <button id="size-button">Change size</button>
+      <button id="size-button">Size</button>
       <button id="make-rule">Make a rule</button>
       <button id="make-solving-rules">Solving rules</button>
       <button id="hint-button">Hint?</button>
       <button id="auto-button">Auto-solve</button>
+      <button id="help-button">?</button>
       <div id="size-field" style="display: none">
         <label for="size">Size:</label> <input type="text" id="size">
       </div>
       <div id="solve-field" style="display: none">
       </div>
+      <div id="warnings"></div>
     </div>
     <div style="height: 6em;">
       <div id="hint-container" style="display: none; position: relative;">
-        <div id="hint-container-close">&times;</div>
+        <div id="hint-container-close" class="close">&times;</div>
         <div id="hint"></div>
       </div>
     </div>
@@ -39,6 +41,55 @@
     <div id="answer" style="display: none">
     </div>
   </div>
+
+</div>
+
+<div id="help" style="display: none">
+
+  <div id="help-container-close" class="close">&times;</div>
+
+  <p>This is a logic game.  A board is laid out with specific choices
+  (like <span tile="tile tile-row-1 tile-type-1 type-1-1">B</span>).
+  But to start you don't know what those choices are!  You have to
+  deduce what goes where. </p>
+
+  <p>To help you, you can acquire some rules.  Hit the
+  button <button>Solving rules</button> and you'll get a bunch of
+  rules or hints about how the board is laid out.  These rules take a few forms:
+
+    <ol>
+
+      <li>One tile is to the left of another tile, like:
+        <table class="rule order">
+          <tr>
+            <td><span class="tile tile-row-1 tile-type-2 type-1-2">C</span></td>
+            <td>...</td>
+            <td><span class="tile tile-row-0 tile-type-1 type-0-1">2</span></td>
+          </tr>
+        </table>
+        <br>
+        This means that the <strong>C</strong> is somewhere to the
+        left of <strong>2</strong>.
+      </li>
+
+      <li>One tile is next to another, like:
+        <table class="rule next">
+          <tr>
+            <td><span class="tile tile-row-0 tile-type-0 type-0-0">1</span></td>
+            <td><span class="tile tile-row-3 tile-type-0 type-3-0">u</span></td>
+          </tr>
+        </table>
+        <br>
+        This means that <strong>1</strong> is next
+        to <strong>u</strong> &mdash; but their order could be
+        reversed (i.e., it will be <strong>u</strong> then <strong>1</strong>).
+      </li>
+
+      <li>And other stuff.</li>
+
+    </ol>
+
+  </p>
 
 </div>
 

@@ -4,7 +4,7 @@ $(function () {
   });
 
   if (! $('#size').val()) {
-    $('#size').val('6');
+    $('#size').val('4');
   }
   recalculate();
 
@@ -37,11 +37,17 @@ $(function () {
   $('#hint-container-close').click(function () {
     $('#hint-container').hide();
   });
+  $('#help-container-close').click(function () {
+    $('#help').hide();
+  });
   $('#size-button').click(function () {
     $('#size-field').toggle();
   });
   $(document).on("dblclick", ".rule", function () {
     $(this).hide();
+  });
+  $('#help-button').click(function () {
+    $('#help').toggle();
   });
 });
 
@@ -76,6 +82,26 @@ function recalculate() {
 
 function random(n) {
   return Math.floor(Math.random() * n);
+}
+
+function addWarning(message, relevant, immediate) {
+  if (! immediate) {
+    setTimeout(function () {
+      addWarning(message, relevant, true);
+    }, 1000);
+    return;
+  }
+  if (! relevant()) {
+    return;
+  }
+  var el = $('<div class="warning-message" />');
+  el.append(text(message));
+  var button = $('<button>dismiss</button>');
+  el.append(button);
+  button.click(function () {
+    el.remove();
+  });
+  $('#warnings').append(el);
 }
 
 function Remove(col, tile, reason) {
@@ -952,6 +978,9 @@ Ops.prototype = {
   },
 
   setNope: function (col, tile) {
+    if (this.chosen(col, tile)) {
+      this._undoChosen(col, tile);
+    }
     this.choices[tile.row][col][tile.type] = false;
     if (! this._table) {
       return;
@@ -962,6 +991,9 @@ Ops.prototype = {
   },
 
   setMaybe: function (col, tile) {
+    if (this.chosen(col, tile)) {
+      this._undoChosen(col, tile);
+    }
     this.choices[tile.row][col][tile.type] = "maybe";
     if (! this._table) {
       return;
@@ -987,6 +1019,20 @@ Ops.prototype = {
     var td = this.tileTd(col, tile);
     td.removeClass('nope').removeClass('maybe');
     td.addClass('chosen');
+    for (var type=0; type<this.size; type++) {
+      if (type == tile.type) {
+        continue;
+      }
+      td = this.tileTd(col, Tile(tile.row, type));
+      td.hide();
+    }
+  },
+
+  _undoChosen: function (col, tile) {
+    for (var type=0; type<this.size; type++) {
+      var td = this.tileTd(col, Tile(tile.row, type));
+      td.show();
+    }
   },
 
   solved: function () {
@@ -1085,12 +1131,33 @@ Ops.prototype = {
         this.setMaybe(col, tile);
       } else {
         this.setChosen(col, tile);
+        if (! puzzle.has(col, tile)) {
+          addWarning(
+            "But " + tile + " is not in column " + (col+1) + "!",
+            (function () {
+              return this.chosen(col, tile);
+            }).bind(this));
+        }
+        if (this.solved()) {
+          addWarning(
+            "Huzzah, you have won!",
+            function () {return true;},
+            true
+          );
+        }
       }
     } else {
       if (this.chosen(col, tile) || this.anyChosen(col, tile.row)) {
         // Do nothing
       } else if (this.maybe(col, tile)) {
         this.setNope(col, tile);
+        if (puzzle.has(col, tile)) {
+          addWarning(
+            "But " + tile + " is in column " + (col+1) + "!",
+            (function () {
+              return this.nope(col, tile);
+            }).bind(this));
+        }
       } else {
         this.setMaybe(col, tile);
       }
